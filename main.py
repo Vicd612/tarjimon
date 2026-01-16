@@ -32,7 +32,7 @@ languages = [
 
 @dp.message(CommandStart())
 async def start_handler(message: types.Message):
-    await message.answer(f"Salom {message.from_user.full_name}!\nMatn yuboring.")
+    await message.answer(f"Salom {message.from_user.full_name} ✋ !\nMatn yuboring.")
 
 @dp.message(Command("id"))
 async def get_id(message: types.Message):
@@ -43,14 +43,14 @@ async def admin_cmd(message: types.Message, state: FSMContext):
     if message.from_user.id != ADMIN_ID:
         await message.answer("❌ Admin emassiz!")
         return
-    
-    await message.answer("Til nomini yozing:")
+
+    await message.answer(" Salom admin 👋 ! \nTil nomini yozing:")
     await state.set_state(AddLang.name)
 
 @dp.message(AddLang.name)
 async def get_lang_name(message: types.Message, state: FSMContext):
     await state.update_data(name=message.text)
-    await message.answer("Til kodini yozing:")
+    await message.answer("Til kodini yozing :")
     await state.set_state(AddLang.code)
 
 @dp.message(AddLang.code)
